@@ -76,6 +76,15 @@ if missing:
     st.stop()
 
 # ---------------------------------------------------------------
+# Optional Period selector (only shown if a Period column exists)
+# ---------------------------------------------------------------
+if "Period" in df.columns:
+    periods = df["Period"].unique().tolist()
+    selected_period = st.sidebar.selectbox("Period", periods)
+    df = df[df["Period"] == selected_period].reset_index(drop=True)
+    st.caption(f"Showing: **{selected_period}**")
+
+# ---------------------------------------------------------------
 # Core variance calculations
 # ---------------------------------------------------------------
 if convention.startswith("Plan/Forecast"):
@@ -157,26 +166,46 @@ st.caption(
 st.markdown("---")
 
 # ---------------------------------------------------------------
-# Waterfall chart: Plan -> Category variances -> Actual
+# Variance Bridge (waterfall of deltas only -- not anchored to
+# Plan/Actual absolute totals, which are usually orders of magnitude
+# larger than individual category variances and make a traditional
+# Plan-to-Actual waterfall unreadable)
 # ---------------------------------------------------------------
-st.subheader("Variance Waterfall")
+st.subheader("Variance Bridge")
+st.caption(
+    "Shows each category's dollar contribution to the total variance, "
+    "starting at $0 and building to Net Variance. Plan and Actual totals "
+    "are shown in the KPI cards above."
+)
 
-waterfall_categories = ["Plan"] + df["Category"].tolist() + ["Actual"]
-waterfall_values = [total_plan] + (-df["Variance $"]).tolist() + [total_actual]
-measures = ["absolute"] + ["relative"] * len(df) + ["total"]
+bridge_df = df.sort_values("Variance $", ascending=False).reset_index(drop=True)
+
+bridge_categories = bridge_df["Category"].tolist() + ["Net Variance"]
+bridge_values = bridge_df["Variance $"].tolist() + [0]  # Plotly auto-sums the total
+bridge_measures = ["relative"] * len(bridge_df) + ["total"]
+
+# Text labels on each bar showing the $ value, so bars remain legible
+# even when small relative to others in the same chart
+bridge_text = [
+    f"${v:,.0f}" if abs(v) < 1_000_000 else f"${v/1_000_000:,.1f}M"
+    for v in bridge_df["Variance $"].tolist()
+] + [f"${total_variance:,.0f}" if abs(total_variance) < 1_000_000 else f"${total_variance/1_000_000:,.1f}M"]
 
 fig = go.Figure(
     go.Waterfall(
-        x=waterfall_categories,
-        measure=measures,
-        y=waterfall_values,
+        x=bridge_categories,
+        measure=bridge_measures,
+        y=bridge_values,
+        text=bridge_text,
+        textposition="outside",
         connector={"line": {"color": "rgb(180,180,180)"}},
         decreasing={"marker": {"color": "#d62728"}},
         increasing={"marker": {"color": "#2ca02c"}},
         totals={"marker": {"color": "#1f77b4"}},
     )
 )
-fig.update_layout(showlegend=False, height=450)
+fig.add_hline(y=0, line_width=1, line_color="rgba(0,0,0,0.3)")
+fig.update_layout(showlegend=False, height=480, margin=dict(t=20, b=120))
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("---")
