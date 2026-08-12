@@ -1,9 +1,26 @@
-Category,Actual,Plan,PriorQuarterActual,PriorYearActual
-Salaries and Employee Benefits,412500000,398000000,405100000,388200000
-Occupancy Expense,58300000,56000000,57900000,54100000
-Equipment Expense,41200000,39500000,40800000,37600000
-FDIC Insurance,22100000,21000000,21500000,19800000
-Professional Fees,33700000,29500000,31200000,27400000
-Marketing Expense,18900000,20500000,19100000,17700000
-Technology and Data Processing,64500000,60000000,61800000,55200000
-Other Noninterest Expense,27800000,26000000,26500000,24900000
+Period,Category,Actual,Plan,PlanLow,PlanHigh
+Quarterly (Q2 2026 vs Q1 2026),Personnel Cost,844000000,869000000,,
+Quarterly (Q2 2026 vs Q1 2026),Net Occupancy Expense,59000000,60000000,,
+Quarterly (Q2 2026 vs Q1 2026),Equipment Expense,141000000,136000000,,
+Quarterly (Q2 2026 vs Q1 2026),Professional Fees,26000000,24000000,,
+Quarterly (Q2 2026 vs Q1 2026),Third-Party Processing Fees,100000000,93000000,,
+Quarterly (Q2 2026 vs Q1 2026),FDIC Insurance Expense,39000000,38000000,,
+Quarterly (Q2 2026 vs Q1 2026),Marketing Expense,45000000,30000000,,
+Quarterly (Q2 2026 vs Q1 2026),Acquisition-Related Expenses,8000000,5000000,,
+Quarterly (Q2 2026 vs Q1 2026),Intangible Asset Amortization,11000000,13000000,,
+Quarterly (Q2 2026 vs Q1 2026),Other Noninterest Expense,110000000,102000000,,
+Quarterly (Q2 2026 vs Q1 2026),Depreciation on Operating Lease Equipment,101000000,101000000,,
+Quarterly (Q2 2026 vs Q1 2026),Maintenance and Other Operating Lease Expenses,67000000,65000000,,
+YTD (6mo 2026 vs 6mo 2025),Personnel Cost,1713000000,1628000000,,
+YTD (6mo 2026 vs 6mo 2025),Net Occupancy Expense,119000000,119000000,,
+YTD (6mo 2026 vs 6mo 2025),Equipment Expense,277000000,267000000,,
+YTD (6mo 2026 vs 6mo 2025),Professional Fees,50000000,55000000,,
+YTD (6mo 2026 vs 6mo 2025),Third-Party Processing Fees,193000000,126000000,,
+YTD (6mo 2026 vs 6mo 2025),FDIC Insurance Expense,77000000,76000000,,
+YTD (6mo 2026 vs 6mo 2025),Marketing Expense,75000000,64000000,,
+YTD (6mo 2026 vs 6mo 2025),Acquisition-Related Expenses,13000000,80000000,,
+YTD (6mo 2026 vs 6mo 2025),Intangible Asset Amortization,24000000,28000000,,
+YTD (6mo 2026 vs 6mo 2025),Other Noninterest Expense,212000000,239000000,,
+YTD (6mo 2026 vs 6mo 2025),Depreciation on Operating Lease Equipment,202000000,198000000,,
+YTD (6mo 2026 vs 6mo 2025),Maintenance and Other Operating Lease Expenses,132000000,113000000,,
+Full Year 2025 (Adjusted Actual vs. Mid-Year Guidance Range),Total Noninterest Expense (Adjusted),5203000000,5150000000,5100000000.0,5200000000.0
